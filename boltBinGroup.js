@@ -8,9 +8,9 @@ function onLoadEvents() {
 
 	 clearInterval(checkExist);
 	 
-	 passEstimatedWeight();
-	 setDrawerpackImage();
-	 passCalculatedHeight();
+//	 passEstimatedWeight();
+	 setGroupImage();
+//	 passCalculatedHeight();
     }
     else {
 
@@ -73,24 +73,27 @@ function passEstimatedWeight() {
   document.getElementById("ESTIMATED_WEIGHT_DISPLAY").value = total;
 }
 
-function setDrawerpackImage() {
+function setGroupImage() {
 
-  var threeInch = document.getElementById("NUMBER_OF_3IN_DRAWERS").value + "-";
-  var fiveInch = document.getElementById("NUMBER_OF_5IN_DRAWERS").value + "-";
-  var sevenInch = document.getElementById("NUMBER_OF_7IN_DRAWERS").value;
-  var workTray = document.getElementById("WORK_TRAY_3").checked;
-  var workTrayText = "";
+	var columns = document.getElementById("NUMBER_OF_COLUMNS").value + "-";
+	var rows = document.getElementById("NUMBER_OF_ROWS").value + "-";
+//	var threeInch = document.getElementById("NUMBER_OF_3IN_DRAWERS").value + "-";
+//  var fiveInch = document.getElementById("NUMBER_OF_5IN_DRAWERS").value + "-";
+//  var sevenInch = document.getElementById("NUMBER_OF_7IN_DRAWERS").value;
+//  var workTray = document.getElementById("WORK_TRAY_3").checked;
+//  var workTrayText = "";
 
-  if (workTray) { workTrayText = "-WT"; }
+//  if (workTray) { workTrayText = "-WT"; }
 
   /*console.log("image = DRSA-X-" + threeInch + fiveInch + sevenInch
 		    + workTrayText + document.getElementById("DRAWERPACK_IMAGE_IMAGE").src);*/
 
+	console.log("image = PBA-" + columns + rows + document.getElementById("BOLTBIN_IMAGE_IMAGE").src);
 
-  document.getElementById("DRAWERPACK_IMAGE_IMAGE").src = "/HTML/products/626725662/images/DRSA-X-" 
-    + threeInch + fiveInch + sevenInch + workTrayText
+  document.getElementById("BOLTBIN_IMAGE_IMAGE").src = "/HTML/products/1730885487/images/PBA-" 
+    + columns + rows
     + ".png";
-  ///HTML/products/626725662/images/DRSA-X-1-1-1.PNG
+
 }	
 
 
