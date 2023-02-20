@@ -8,7 +8,7 @@ function onLoadEvents() {
 
 	 clearInterval(checkExist);
 	 
-	 setGroupImage();
+	 setImage();
 
     }
     else {
@@ -22,7 +22,7 @@ function onLoadEvents() {
   }, 500);
 }
 
-function setGroupImage() {
+function setImage() {
 
 	var columns = document.getElementById("NUMBER_OF_COLUMNS").value + "-";
 	var rows = document.getElementById("NUMBER_OF_ROWS").value ;
