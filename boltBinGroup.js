@@ -8,9 +8,8 @@ function onLoadEvents() {
 
 	 clearInterval(checkExist);
 	 
-//	 passEstimatedWeight();
 	 setGroupImage();
-//	 passCalculatedHeight();
+
     }
     else {
 
@@ -23,70 +22,10 @@ function onLoadEvents() {
   }, 500);
 }
 
-function passCalculatedHeight() {
-
-  var workTray = document.getElementById("WORK_TRAY_3").checked;
-
-  var height = parseFloat(document.getElementById("RISER_HEIGHT").value);
-  var in7 = parseFloat(document.getElementById("NUMBER_OF_7IN_DRAWERS").value) * 7.125;
-  var in5 = parseFloat(document.getElementById("NUMBER_OF_5IN_DRAWERS").value) * 5.125;
-  var in3 = parseFloat(document.getElementById("NUMBER_OF_3IN_DRAWERS").value) * 3.125;
-
-  var total = height + in7 + in5 + in3 + 0.3125 + 1.9375;
-
-  if (workTray) { total+=3.125; }
-
-  if (isNaN(total)) { 
-    total = "[invalid data]"; 
-  }
-
-  document.getElementById("CALCULATED_HEIGHT_DISPLAY").value = total;
-}
-
-function passEstimatedWeight() {
-
-  var workTray = document.getElementById("WORK_TRAY_3").checked;
-
-  var width = parseFloat(document.getElementById("DRAWER_PACK_WIDTH").value);
-  var depth = parseFloat(document.getElementById("DRAWER_PACK_DEPTH").value);
-  var height = parseFloat(document.getElementById("RISER_HEIGHT").value);
-  var in7 = parseFloat(document.getElementById("NUMBER_OF_7IN_DRAWERS").value);
-  var in5 = parseFloat(document.getElementById("NUMBER_OF_5IN_DRAWERS").value);
-  var in3 = parseFloat(document.getElementById("NUMBER_OF_3IN_DRAWERS").value);
-
-  var total = Math.floor(6 + 0.016 * depth * width) +
-	 (Math.floor(13 + 0.028 * depth * width) * in3) +
-	 (Math.floor(15 + 0.037 * depth * width) * in5) +
-	 (Math.floor(18 + 0.043 * depth * width) * in7);
-
-  if (workTray) { total+=Math.floor(13 + 0.028 * depth * width); }
-
-  total += Math.floor(1 + 0.03 * depth * height);
-
-  /*console.log(Math.floor(6 + 0.016 * depth * width), (Math.floor(13 + 0.028 * depth * width) * in3),
-		    (Math.floor(15 + 0.037 * depth * width) * in5), (Math.floor(18 + 0.043 * depth * width) * in7));*/
-
-  if (isNaN(total)) { 
-    total = "[invalid data]"; 
-  }
-
-  document.getElementById("ESTIMATED_WEIGHT_DISPLAY").value = total;
-}
-
 function setGroupImage() {
 
 	var columns = document.getElementById("NUMBER_OF_COLUMNS").value + "-";
 	var rows = document.getElementById("NUMBER_OF_ROWS").value ;
-//	var threeInch = document.getElementById("NUMBER_OF_3IN_DRAWERS").value + "-";
-//  var fiveInch = document.getElementById("NUMBER_OF_5IN_DRAWERS").value + "-";
-//  var sevenInch = document.getElementById("NUMBER_OF_7IN_DRAWERS").value;
-//  var workTray = document.getElementById("WORK_TRAY_3").checked;
-//  var workTrayText = "";
-
-//  if (workTray) { workTrayText = "-WT"; }
-
-  /*console.log("image = DRSA-X-" + threeInch + fiveInch + sevenInch
-		    + workTrayText + document.getElementById("DRAWERPACK_IMAGE_IMAGE").src);*/
 
 	console.log("image = PBA-" + columns + rows + document.getElementById("BOLTBIN_IMAGE_IMAGE").src);
 
@@ -95,25 +34,6 @@ function setGroupImage() {
     + ".png";
 
 }	
-
-
-
-/* $(document).ready(function(){
-
-  console.log("Page loaded");
-}).ajaxComplete(function(event, request, settings){
-  
- /* if (workTray) {
-    if(settings.url.indexOf("/spr/Configuration/interface/dataTable") > -1) {
-    		getCalculatedData("DRAWERPACK_PART_ATTR", "ATTR2", "WT_PN_EQ", "CONFIGURED_PN");
-    		loadbom();
-  		}}
-			}); 
-  if(settings.url.indexOf("/spr/Configuration/interface/dataTable") > -1) {
-    		getCalculatedData("DRAWERPACK_PART_ATTR", "ATTR", "PN", "CONFIGURED_PN");
-    		loadbom();
-  		}
-			});*/
 
 
 //UTILITY FUNCTIONS
