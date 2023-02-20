@@ -1,0 +1,103 @@
+<table style="width: 100%;">
+	<tr>
+		<td align="center" style="margin-top: 63px;">
+			<doc><javascript>
+			
+				var columns =  processText('<doc>design.value.NUMBER_OF_COLUMNS</doc>');
+				var rows =  processText('<doc>design.value.NUMBER_OF_ROWS</doc>');
+				
+				src = columns + '-' + rows ;
+				var slash = "/";
+				
+				var srcImg = 'file://localhost/D|/Concept11/transwest/transwestDev/HTML/products/1730885487/images/PBA-' + src + '.png'; 
+
+				//out.println('<img src="' + srcImg + '" + slash >');
+				out.println('<img src="' + srcImg + '"' + slash + '>');
+			
+			</javascript></doc>
+		</td>
+	</tr>
+</table>
+
+<doc><javascript>
+
+	var columns =  processText('<doc>design.value.NUMBER_OF_COLUMNS</doc>');
+	var rows =  processText('<doc>design.value.NUMBER_OF_ROWS</doc>');
+	
+	var imgHeight = (rows * 50) + 211 + 114;
+	
+	if (imgHeight >= 703) { out.println('<pbr/>'); }
+	
+</javascript></doc>
+
+<table style="left: 130px; margin-top: 45px; width: 100%;">
+	<tr>
+		<td align="center" colspan="2" style="padding: 5px; background: lightgrey; border: 0.5px solid black;">
+			CONFIGURATION DETAILS
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			Number of Columns of Bins
+		</td>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			<doc>design.value.NUMBER_OF_COLUMNS</doc>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			Number of Rows of Bins
+		</td>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			<doc>design.value.NUMBER_OF_ROWS</doc>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			Riser Height
+		</td>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			<doc>design.value.RISER_HEIGHT</doc>"
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			Overall Width
+		</td>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			<doc>design.value.OVERALL_WIDTH_ROUNDED</doc>"
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			Overall Height
+		</td>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			<doc>design.value.OVERALL_HEIGHT_ROUNDED</doc>"
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			Estimated Weight (Pounds)
+		</td>
+		<td align="center" width="30%" style="border: 0.5px solid black;">
+			<doc>design.value.ESTIMATED_WEIGHT_ROUNDED_UP</doc>
+		</td>
+	</tr>
+</table>
+
+
+<!-- CALL TO SINGLE ROW BOM WHICH SHOWS THE CONFIGURED PART NUMBER -->
+
+<table style="left: 130px; margin-top: 45px; width: 100%;">
+	<doc>document.template.1933810912</doc>	
+</table>
+
+
+<table style="left: 130px; margin-top: 25px; width: 100%;">
+	<tr>
+		<td width="60%" align="center" style="color: red; font-size: 20px;">
+			Total Cost: $<doc>design.value.TOTAL_COST_TO_CUSTOMER</doc>
+		</td>
+	</tr>
+</table>
