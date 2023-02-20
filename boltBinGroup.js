@@ -4,7 +4,7 @@ function onLoadEvents() {
 
   var checkExist = setInterval(function() {
         
-    if (!isNaN(parseFloat(document.getElementById("DRAWER_PACK_WIDTH").value))) {
+    if (!isNaN(parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value))) {
 
 	 clearInterval(checkExist);
 	 
@@ -76,7 +76,7 @@ function passEstimatedWeight() {
 function setGroupImage() {
 
 	var columns = document.getElementById("NUMBER_OF_COLUMNS").value + "-";
-	var rows = document.getElementById("NUMBER_OF_ROWS").value + "-";
+	var rows = document.getElementById("NUMBER_OF_ROWS").value ;
 //	var threeInch = document.getElementById("NUMBER_OF_3IN_DRAWERS").value + "-";
 //  var fiveInch = document.getElementById("NUMBER_OF_5IN_DRAWERS").value + "-";
 //  var sevenInch = document.getElementById("NUMBER_OF_7IN_DRAWERS").value;
