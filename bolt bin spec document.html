@@ -11,7 +11,9 @@
 				
 				var srcImg = 'file://localhost/D|/Concept11/transwest/transwestDev/HTML/products/1730885487/images/PBA-' + src + '.png'; 
 
-				out.println('<img src="' + srcImg + '" style="width: 40%; height: 40%;"' + slash + '>');
+				var imgPercentage = 40;
+				
+				out.println('<img src="' + srcImg + '" style="width: ' + imgPercentage + '%; height: ' + imgPercentage + '%;"' + slash + '>');
 			
 			</javascript></doc>
 		</td>
@@ -20,12 +22,9 @@
 
 <doc><javascript>
 
-	var columns =  processText('<doc>design.value.NUMBER_OF_COLUMNS</doc>');
 	var rows =  processText('<doc>design.value.NUMBER_OF_ROWS</doc>');
 	
-	var imgHeight = (rows * 50) + 211 + 114;
-	
-	if (imgHeight >= 703) { out.println('<pbr/>'); }
+	if (rows >= 7) { out.println('<pbr/>'); }
 	
 </javascript></doc>
 
