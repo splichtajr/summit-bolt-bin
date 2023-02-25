@@ -107,9 +107,6 @@ function totalCost() {
  	var sqin = (((578.6 * columns) + 128.1) * rows) + (365.1 * columns) + 1114.7;
  	sqin = parseFloat(sqin.toFixed(1));
  	
- 	//var material = sqin / 1.35;
- 	//var volume = material * .125;
- 	
  	var	rawmatlcost = sqin * sqinprice;
  	rawmatlcost = parseFloat(rawmatlcost.toFixed(4));
  	
