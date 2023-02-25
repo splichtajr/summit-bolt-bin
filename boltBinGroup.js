@@ -8,6 +8,10 @@ function onLoadEvents() {
 
 	 clearInterval(checkExist);
 	 
+	 overallHeights();
+	 overallWidths();
+	 estimatedWeights();
+	 totalCost();
 	 setImage();
 
     }
@@ -22,6 +26,113 @@ function onLoadEvents() {
   }, 500);
 }
 
+function runCalculatedValues() {
+	overallHeights();
+	overallWidths();
+	estimatedWeights();
+	totalCost();
+	setImage();
+}
+
+function overallHeights() {
+
+  var rows = parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
+  var riserheight = parseFloat(document.getElementById("RISER_HEIGHT").value);
+  var rise = 6.8089 + riserheight - 3.75;
+  var standardtopdrop = parseFloat(document.getElementById("STANDARD_TOP_DROP").value);
+ 	var binspacing = parseFloat(document.getElementById("BIN_SPACING").value);
+ 	var gap_thickness = parseFloat(document.getElementById("GAP_THICKNESS").value);
+  
+  var total = rise + standardtopdrop + ((rows - 2)* binspacing) + ((rows - 1) * gap_thickness) + 2;
+  var total = parseFloat(total.toFixed(4));
+
+  var totalrounded = Math.round(total / .125) * .125;
+
+  if (isNaN(total)) { 
+    total = "[invalid data]"; 
+  }
+
+  document.getElementById("OVERALL_HEIGHT").value = total;
+  document.getElementById("OVERALL_HEIGHT_ROUNDED").value = totalrounded;
+}
+
+function overallWidths() {
+
+  var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
+ 	var gap_thickness = parseFloat(document.getElementById("GAP_THICKNESS").value);
+ 	var wall_spacing = parseFloat(document.getElementById("WALL_SPACING").value);
+  
+  var total = ((columns - 1) * gap_thickness) + (columns * wall_spacing) + 1.6925;
+  var total = parseFloat(total.toFixed(4));
+
+  var totalrounded = Math.round(total / .125) * .125;
+
+  if (isNaN(total)) { 
+    total = "[invalid data]"; 
+  }
+
+  document.getElementById("OVERALL_WIDTH").value = total;
+  document.getElementById("OVERALL_WIDTH_ROUNDED").value = totalrounded;
+}
+
+function estimatedWeights() {
+
+  var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
+  var rows =  parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
+ 	var density = parseFloat(document.getElementById("DENSITY_OF_ALUMINUM_BOLT_BIN").value);
+  
+  var sqin = (((578.6 * columns) + 128.1) * rows) + (365.1 * columns) + 1114.7;
+  var material = sqin / 1.35;
+ 	var volume = material * .125;
+
+  var total = volume * density;
+  var total = parseFloat(total.toFixed(4));
+
+  var totalrounded = Math.ceil(total);
+
+  if (isNaN(total)) { 
+    total = "[invalid data]"; 
+  }
+
+  document.getElementById("ESTIMATED_WEIGHT").value = total;
+  document.getElementById("ESTIMATED_WEIGHT_ROUNDED_UP").value = totalrounded;
+}
+
+function totalCost() {
+
+  var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
+  var rows =  parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
+ 	var sqinprice = parseFloat(document.getElementById("PRICE_PER_SQUARE_INCH_MATERIAL").value);
+
+ 	var sqin = (((578.6 * columns) + 128.1) * rows) + (365.1 * columns) + 1114.7;
+ 	sqin = parseFloat(sqin.toFixed(1));
+ 	
+ 	//var material = sqin / 1.35;
+ 	//var volume = material * .125;
+ 	
+ 	var	rawmatlcost = sqin * sqinprice;
+ 	rawmatlcost = parseFloat(rawmatlcost.toFixed(4));
+ 	
+ 	var rawmatlcostwadder = rawmatlcost / (1 - .51);
+ 	rawmatlcostwadder = parseFloat(rawmatlcostwadder.toFixed(4));
+ 	
+ 	var laborhours = (((.1142 * columns) + .0777) * rows) + (.2102 * columns) + 1.7901;
+ 	laborhours = parseFloat(laborhours.toFixed(4));
+
+  var total = rawmatlcostwadder + (laborhours * 65);
+  var total = parseFloat(total.toFixed(2));
+
+  if (isNaN(total)) { 
+    total = "[invalid data]"; 
+  }
+
+  document.getElementById("TOTAL_COST_TO_CUSTOMER").value = total;
+  document.getElementById("RAW_MATERIAL_COST").value = rawmatlcost;
+  document.getElementById("RAW_MATERIAL_COST_W_ADDER").value = rawmatlcostwadder;
+  document.getElementById("LABOR_HOURS_USED").value = laborhours;
+  document.getElementById("SQUARE_INCHES_USED").value = sqin;
+}
+
 function setImage() {
 
 	var columns = document.getElementById("NUMBER_OF_COLUMNS").value + "-";
@@ -33,7 +144,8 @@ function setImage() {
     + columns + rows
     + ".png";
 
-}	
+}
+
 
 
 //UTILITY FUNCTIONS
