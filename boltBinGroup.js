@@ -100,9 +100,9 @@ function estimatedWeights() {
 
 function totalCost() {
 
-  var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
-  var rows =  parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
- 	var sqinprice = parseFloat(document.getElementById("PRICE_PER_SQUARE_INCH_MATERIAL").value);
+	var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
+	var rows =  parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
+	var sqinprice = parseFloat(document.getElementById("PRICE_PER_SQUARE_INCH_MATERIAL").value);
 
  	var sqin = (((578.6 * columns) + 128.1) * rows) + (365.1 * columns) + 1114.7;
  	sqin = parseFloat(sqin.toFixed(1));
@@ -116,8 +116,8 @@ function totalCost() {
  	var laborhours = (((.1142 * columns) + .0777) * rows) + (.2102 * columns) + 1.7901;
  	laborhours = parseFloat(laborhours.toFixed(4));
 
-  var total = rawmatlcostwadder + (laborhours * 65);
-  var total = parseFloat(total.toFixed(2));
+  	var total = rawmatlcostwadder + (laborhours * 65);
+  	total = parseFloat(total.toFixed(2));
 
   if (isNaN(total)) { 
     total = "[invalid data]"; 
@@ -135,15 +135,13 @@ function setImage() {
 	var columns = document.getElementById("NUMBER_OF_COLUMNS").value + "-";
 	var rows = document.getElementById("NUMBER_OF_ROWS").value ;
 
-	console.log("image = PBA-" + columns + rows + document.getElementById("BOLTBIN_IMAGE_IMAGE").src);
+	//console.log("image = PBA-" + columns + rows + document.getElementById("BOLTBIN_IMAGE_IMAGE").src);
 
   document.getElementById("BOLTBIN_IMAGE_IMAGE").src = "/HTML/products/1730885487/images/PBA-" 
     + columns + rows
     + ".png";
 
 }
-
-
 
 //UTILITY FUNCTIONS
 
@@ -201,4 +199,5 @@ function parseData(data) {
     }
   }
 }
+
 
