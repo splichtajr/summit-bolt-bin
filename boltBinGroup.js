@@ -8,11 +8,7 @@ function onLoadEvents() {
 
 	 clearInterval(checkExist);
 	 
-	 overallHeights();
-	 overallWidths();
-	 estimatedWeights();
-	 totalCost();
-	 setImage();
+	 runCalculatedValues();
 
     }
     else {
@@ -36,66 +32,66 @@ function runCalculatedValues() {
 
 function overallHeights() {
 
-  var rows = parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
-  var riserheight = parseFloat(document.getElementById("RISER_HEIGHT").value);
-  var rise = 6.8089 + riserheight - 3.75;
-  var standardtopdrop = parseFloat(document.getElementById("STANDARD_TOP_DROP").value);
+	var rows = parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
+	var riserheight = parseFloat(document.getElementById("RISER_HEIGHT").value);
+	var rise = 6.8089 + riserheight - 3.75;
+	var standardtopdrop = parseFloat(document.getElementById("STANDARD_TOP_DROP").value);
  	var binspacing = parseFloat(document.getElementById("BIN_SPACING").value);
  	var gap_thickness = parseFloat(document.getElementById("GAP_THICKNESS").value);
   
-  var total = rise + standardtopdrop + ((rows - 2)* binspacing) + ((rows - 1) * gap_thickness) + 2;
-  var total = parseFloat(total.toFixed(4));
+	var total = rise + standardtopdrop + ((rows - 2)* binspacing) + ((rows - 1) * gap_thickness) + 2;
+	total = parseFloat(total.toFixed(4));
 
-  var totalrounded = Math.round(total / .125) * .125;
+	var totalrounded = Math.round(total / .125) * .125;
 
-  if (isNaN(total)) { 
-    total = "[invalid data]"; 
-  }
+	if (isNaN(total)) { 
+		total = "[invalid data]"; 
+	}
 
-  document.getElementById("OVERALL_HEIGHT").value = total;
-  document.getElementById("OVERALL_HEIGHT_ROUNDED").value = totalrounded;
+	document.getElementById("OVERALL_HEIGHT").value = total;
+	document.getElementById("OVERALL_HEIGHT_ROUNDED").value = totalrounded;
 }
 
 function overallWidths() {
 
-  var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
+	var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
  	var gap_thickness = parseFloat(document.getElementById("GAP_THICKNESS").value);
  	var wall_spacing = parseFloat(document.getElementById("WALL_SPACING").value);
   
-  var total = ((columns - 1) * gap_thickness) + (columns * wall_spacing) + 1.6925;
-  var total = parseFloat(total.toFixed(4));
+	var total = ((columns - 1) * gap_thickness) + (columns * wall_spacing) + 1.6925;
+	total = parseFloat(total.toFixed(4));
 
-  var totalrounded = Math.round(total / .125) * .125;
+	var totalrounded = Math.round(total / .125) * .125;
 
-  if (isNaN(total)) { 
-    total = "[invalid data]"; 
-  }
+	if (isNaN(total)) { 
+		total = "[invalid data]"; 
+	}
 
-  document.getElementById("OVERALL_WIDTH").value = total;
-  document.getElementById("OVERALL_WIDTH_ROUNDED").value = totalrounded;
+	document.getElementById("OVERALL_WIDTH").value = total;
+	document.getElementById("OVERALL_WIDTH_ROUNDED").value = totalrounded;
 }
 
 function estimatedWeights() {
 
-  var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
-  var rows =  parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
+	var columns = parseFloat(document.getElementById("NUMBER_OF_COLUMNS").value);
+	var rows =  parseFloat(document.getElementById("NUMBER_OF_ROWS").value);
  	var density = parseFloat(document.getElementById("DENSITY_OF_ALUMINUM_BOLT_BIN").value);
   
-  var sqin = (((578.6 * columns) + 128.1) * rows) + (365.1 * columns) + 1114.7;
-  var material = sqin / 1.35;
+	var sqin = (((578.6 * columns) + 128.1) * rows) + (365.1 * columns) + 1114.7;
+	var material = sqin / 1.35;
  	var volume = material * .125;
 
-  var total = volume * density;
-  var total = parseFloat(total.toFixed(4));
+	var total = volume * density;
+	total = parseFloat(total.toFixed(4));
 
-  var totalrounded = Math.ceil(total);
+	var totalrounded = Math.ceil(total);
 
-  if (isNaN(total)) { 
-    total = "[invalid data]"; 
-  }
+	if (isNaN(total)) { 
+		total = "[invalid data]"; 
+	}
 
-  document.getElementById("ESTIMATED_WEIGHT").value = total;
-  document.getElementById("ESTIMATED_WEIGHT_ROUNDED_UP").value = totalrounded;
+	document.getElementById("ESTIMATED_WEIGHT").value = total;
+	document.getElementById("ESTIMATED_WEIGHT_ROUNDED_UP").value = totalrounded;
 }
 
 function totalCost() {
@@ -113,21 +109,29 @@ function totalCost() {
  	var rawmatlcostwadder = rawmatlcost / (1 - .51);
  	rawmatlcostwadder = parseFloat(rawmatlcostwadder.toFixed(4));
  	
- 	var laborhours = (((.1142 * columns) + .0777) * rows) + (.2102 * columns) + 1.7901;
+	var laborhours = (((.1142 * columns) + .0777) * rows) + (.2102 * columns) + 1.7901;
  	laborhours = parseFloat(laborhours.toFixed(4));
 
-  	var total = rawmatlcostwadder + (laborhours * 65);
+	var total = rawmatlcostwadder + (laborhours * 65);
   	total = parseFloat(total.toFixed(2));
 
-  if (isNaN(total)) { 
-    total = "[invalid data]"; 
-  }
+	if (isNaN(total)) { 
+		total = "[invalid data]"; 
+	}
 
-  document.getElementById("TOTAL_COST_TO_CUSTOMER").value = total;
-  document.getElementById("RAW_MATERIAL_COST").value = rawmatlcost;
-  document.getElementById("RAW_MATERIAL_COST_W_ADDER").value = rawmatlcostwadder;
-  document.getElementById("LABOR_HOURS_USED").value = laborhours;
-  document.getElementById("SQUARE_INCHES_USED").value = sqin;
+	var totaldisplay = total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+	totaldisplay = "$ " + totaldisplay;
+  
+	document.getElementById("TOTAL_COST_TO_CUSTOMER_DISPLAY").value = totaldisplay;
+	let txt = document.getElementById("TOTAL_COST_TO_CUSTOMER_DISPLAY");
+	txt.style.textAlign = "right";
+	txt.style.color = "blue";
+
+	document.getElementById("TOTAL_COST_TO_CUSTOMER").value = total;
+	document.getElementById("RAW_MATERIAL_COST").value = rawmatlcost;
+	document.getElementById("RAW_MATERIAL_COST_W_ADDER").value = rawmatlcostwadder;
+	document.getElementById("LABOR_HOURS_USED").value = laborhours;
+	document.getElementById("SQUARE_INCHES_USED").value = sqin;
 }
 
 function setImage() {
@@ -137,9 +141,9 @@ function setImage() {
 
 	//console.log("image = PBA-" + columns + rows + document.getElementById("BOLTBIN_IMAGE_IMAGE").src);
 
-  document.getElementById("BOLTBIN_IMAGE_IMAGE").src = "/HTML/products/1730885487/images/PBA-" 
-    + columns + rows
-    + ".png";
+  	document.getElementById("BOLTBIN_IMAGE_IMAGE").src = "/HTML/products/1730885487/images/PBA-" 
+	+ columns + rows
+	+ ".png";
 
 }
 
