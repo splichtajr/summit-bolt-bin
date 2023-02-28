@@ -1,0 +1,22 @@
+.custom .prodId1730885487 #BOLTBIN_IMAGE_TR_tag1 {
+	display: none;
+}
+
+.custom .prodId1730885487 img[name="DRSA-Compartment-Image"] {
+  	width: 400px;
+  	margin-right: -130px;
+}
+
+.custom .prodId1730885487 input:disabled {
+	color: blue !important;
+}
+
+/*
+.custom .prodId1730885487 input:disabled {
+	color: blue !important;
+  	background: transparent !important;
+  	border-width: 0px;
+  	box-shadow: 0px 0px;
+  	text-align: center;
+}
+*/
